@@ -1,6 +1,6 @@
 # Versys Technologies — Coming Soon Page
 
-Static landing page for versysinc.com. One HTML file, one SVG logo, zero dependencies.
+Static landing page for versysinc.com. One HTML file, one PNG logo, zero dependencies.
 
 Deployed to Vercel from this repo. Pushes to `main` auto-deploy.
 
@@ -16,7 +16,7 @@ Open http://localhost:8080 in a browser.
 ## Files
 
 - `index.html` — the landing page (styles inline, Inter font from Google Fonts)
-- `logo.svg` — wordmark in white with green accent
+- `logo.png` — wordmark with green accent (transparent background, 4000×760)
 - `.gitignore` — ignores `.DS_Store`, `.vercel`, and local dev noise
 
 ## TODOs before launch
