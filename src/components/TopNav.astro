@@ -1,0 +1,56 @@
+---
+// Sticky top nav. Transparent at top of page; blurred + dark on scroll past 100px.
+---
+
+<nav
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  data-nav
+>
+  <div class="max-w-content mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 group" aria-label="Versys home">
+      <img
+        src="/icon.svg"
+        alt=""
+        width="28"
+        height="28"
+        class="w-7 h-7"
+      />
+      <img
+        src="/logo.svg"
+        alt="Versys"
+        width="120"
+        height="22"
+        class="h-5 w-auto opacity-90 group-hover:opacity-100 transition"
+      />
+    </a>
+    <div class="flex items-center gap-6">
+      <a
+        href="#waitlist"
+        class="hidden sm:inline text-sm text-brand-ink-soft hover:text-brand-ink transition"
+      >
+        Join waitlist
+      </a>
+      <a
+        href="#waitlist"
+        class="bg-brand-green hover:bg-brand-green/90 text-brand-dark font-semibold text-sm px-4 py-2 rounded-full transition"
+      >
+        Get early access
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const nav = document.querySelector("[data-nav]");
+  if (nav) {
+    const onScroll = () => {
+      if (window.scrollY > 100) {
+        nav.classList.add("bg-brand-dark/80", "backdrop-blur-md", "border-b", "border-white/5");
+      } else {
+        nav.classList.remove("bg-brand-dark/80", "backdrop-blur-md", "border-b", "border-white/5");
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  }
+</script>

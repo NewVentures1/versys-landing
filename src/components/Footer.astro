@@ -1,0 +1,69 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-white/5 mt-32">
+  <div class="max-w-content mx-auto px-6 py-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+      <div class="col-span-2 md:col-span-1">
+        <img
+          src="/logo.svg"
+          alt="Versys"
+          width="120"
+          height="22"
+          class="h-5 w-auto mb-4 opacity-90"
+        />
+        <p class="text-sm text-brand-ink-faint">
+          The operating system for modern carriers.
+        </p>
+      </div>
+      <div>
+        <h4 class="text-xs uppercase tracking-wider text-brand-ink-soft mb-4">Product</h4>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="#tms" class="text-brand-ink-muted hover:text-brand-ink transition">TMS</a>
+          </li>
+          <li>
+            <a href="#fuel" class="text-brand-ink-muted hover:text-brand-ink transition">Fuel Card</a>
+          </li>
+          <li>
+            <a href="#ifta" class="text-brand-ink-muted hover:text-brand-ink transition">IFTA Help</a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs uppercase tracking-wider text-brand-ink-soft mb-4">Company</h4>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a
+              href="mailto:support@versysinc.com"
+              class="text-brand-ink-muted hover:text-brand-ink transition"
+            >
+              Contact
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs uppercase tracking-wider text-brand-ink-soft mb-4">Resources</h4>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="#faq" class="text-brand-ink-muted hover:text-brand-ink transition">FAQ</a>
+          </li>
+          <li>
+            <a href="/privacy" class="text-brand-ink-muted hover:text-brand-ink transition">Privacy</a>
+          </li>
+          <li>
+            <a href="/terms" class="text-brand-ink-muted hover:text-brand-ink transition">Terms</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div
+      class="border-t border-white/5 pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 text-xs text-brand-ink-faint"
+    >
+      <span>© {year} Versys Technologies Inc.</span>
+      <span>Built by truckers, for truckers.</span>
+    </div>
+  </div>
+</footer>
