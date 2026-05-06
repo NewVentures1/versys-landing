@@ -1,6 +1,7 @@
 ---
 import Layout from "../components/Layout.astro";
 import HeroSection from "../components/sections/HeroSection.astro";
+import CalculatorSection from "../components/sections/CalculatorSection";
 ---
 
 <Layout
@@ -8,4 +9,5 @@ import HeroSection from "../components/sections/HeroSection.astro";
   description="Run your fleet on free TMS software. Save up to $1.40/gallon at our fuel network. No fees, no per-user pricing. Built by truckers, for truckers."
 >
   <HeroSection />
+  <CalculatorSection client:load />
 </Layout>
