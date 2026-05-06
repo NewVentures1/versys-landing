@@ -5,7 +5,7 @@ import AnimatedCounter from "../ui/AnimatedCounter";
 
 <section
   id="hero"
-  class="relative min-h-[90vh] flex items-center justify-center pt-32 pb-24 overflow-hidden"
+  class="relative min-h-[85vh] flex items-center justify-center pt-32 pb-16 overflow-hidden"
 >
   <!-- Gradient orbs background -->
   <div aria-hidden="true" class="absolute inset-0 pointer-events-none">
@@ -17,17 +17,20 @@ import AnimatedCounter from "../ui/AnimatedCounter";
   <!-- Subtle grain texture -->
   <div
     aria-hidden="true"
-    class="absolute inset-0 opacity-[0.025] mix-blend-overlay pointer-events-none"
+    class="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none"
     style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence baseFrequency=%220.9%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E');"
   >
   </div>
 
-  <!-- Top-right scroll savings counter (desktop only) -->
-  <div class="absolute top-28 right-8 hidden lg:flex flex-col items-end z-10" data-hero-counter>
-    <span class="text-xs text-brand-ink-faint uppercase tracking-wider mb-1">
-      Per truck, year 1
+  <!-- Top-right savings counter (desktop only) — UP TO is the legal hedge -->
+  <div
+    class="absolute top-28 right-8 hidden xl:flex flex-col items-end gap-1 z-10"
+    data-hero-counter
+  >
+    <span class="text-[10px] text-brand-ink-faint uppercase tracking-[0.18em] font-semibold whitespace-nowrap">
+      Up to · per truck · yr 1
     </span>
-    <span class="font-display text-3xl xl:text-4xl text-brand-green font-bold">
+    <span class="font-display text-3xl 2xl:text-4xl text-brand-green font-bold leading-none">
       <AnimatedCounter client:load from={0} to={25850} duration={2} />
     </span>
   </div>
@@ -35,17 +38,18 @@ import AnimatedCounter from "../ui/AnimatedCounter";
   <!-- Main content -->
   <div class="relative z-10 max-w-content mx-auto px-6 text-center">
     <h1
-      class="text-4xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold tracking-tight leading-[1.05] mb-8"
+      class="text-4xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold tracking-tight leading-[1.0] mb-8 text-balance"
     >
       Free TMS. <span class="text-brand-ink-soft">No card fees.</span>
       <br />
-      Up to <span class="font-display gradient-text-green italic">$1.40</span> off every gallon.
+      Up to{" "}
+      <span class="font-display gradient-text-green inline-block px-1">$1.40</span> off every gallon.
     </h1>
 
     <p
-      class="text-lg md:text-xl text-brand-ink-soft max-w-2xl mx-auto mb-12 leading-relaxed"
+      class="text-base md:text-xl text-brand-ink-soft max-w-2xl mx-auto mb-10 leading-relaxed text-balance"
     >
-      The first platform that pays you to use it. Run your fleet on a complete TMS — and save thousands a month at our fuel network.
+      The first platform that pays you to use it. Free TMS for your fleet — plus thousands a year back on fuel.
     </p>
 
     <div id="waitlist" class="flex justify-center mb-8">
@@ -60,10 +64,28 @@ import AnimatedCounter from "../ui/AnimatedCounter";
         <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-green"></span>
       </span>
       <span>
-        <span class="text-brand-ink font-medium">Coming May 2026</span>
+        <span class="text-brand-ink font-medium">Coming June 2026</span>
         <span class="mx-1">·</span>
-        No fees, no setup, no commitment
+        No fees · No setup · No commitment
       </span>
     </div>
   </div>
+
+  <!-- Scroll cue at bottom of hero -->
+  <a
+    href="#calculator"
+    class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-xs text-brand-ink-faint hover:text-brand-ink-soft transition group"
+    aria-label="See your savings"
+  >
+    <span class="uppercase tracking-wider">See your savings</span>
+    <svg
+      class="w-4 h-4 animate-bounce"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    </svg>
+  </a>
 </section>

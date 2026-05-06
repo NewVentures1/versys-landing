@@ -76,7 +76,7 @@ export default function WaitlistForm({ variant = "hero" }: Props) {
         disabled={status === "submitting"}
         className="bg-brand-green hover:bg-brand-green/90 disabled:opacity-50 text-brand-dark font-semibold px-6 py-3.5 rounded-full transition whitespace-nowrap"
       >
-        {status === "submitting" ? "Joining..." : "Join the waitlist"}
+        {status === "submitting" ? "Saving..." : "Get early access"}
       </button>
       {error && (
         <div role="alert" className="absolute mt-16 text-sm text-red-400">
