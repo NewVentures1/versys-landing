@@ -2,3 +2,22 @@
 .vercel
 node_modules
 *.log
+
+# Astro build output
+dist/
+.astro/
+
+# Env (Resend keys etc.)
+.env
+.env.local
+.env.production
+
+# Test artifacts
+playwright-report/
+test-results/
+coverage/
+
+# IDE
+.idea/
+.vscode/
+*.swp

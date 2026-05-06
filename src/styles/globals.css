@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-green: #16B05A;
+  --color-brand-green-deep: #0E7C3F;
+  --color-brand-dark: #0A0E12;
+  --color-brand-dark-2: #0F1419;
+  --color-brand-dark-3: #161B22;
+  --color-brand-ink: #FFFFFF;
+  --color-brand-ink-muted: #E7EAEE;
+  --color-brand-ink-soft: #A7B0BA;
+  --color-brand-ink-faint: #6B7580;
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+
+  --container-content: 1200px;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    background: var(--color-brand-dark);
+    color: white;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+}
+
+@utility gradient-text-green {
+  background: linear-gradient(135deg, #16B05A 0%, #0E7C3F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@utility gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+}
