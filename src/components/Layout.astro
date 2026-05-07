@@ -62,6 +62,60 @@ const ogImageUrl = new URL(ogImage, Astro.site).toString();
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/icon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": canonicalUrl + "#organization",
+          "name": "Versys",
+          "url": Astro.site?.toString(),
+          "logo": new URL("/logo.png", Astro.site).toString(),
+          "sameAs": [],
+          "description": "Free TMS software for trucking carriers, paired with a fuel card network offering up to $1.40 per gallon off."
+        },
+        {
+          "@type": "WebSite",
+          "@id": canonicalUrl + "#website",
+          "url": Astro.site?.toString(),
+          "name": "Versys",
+          "publisher": { "@id": canonicalUrl + "#organization" },
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "Product",
+          "@id": canonicalUrl + "#tms",
+          "name": "Versys TMS",
+          "description": "Free transportation management system for trucking carriers. Active freight tracking, AR aging, driver settlements, broker management, IFTA-ready fuel data.",
+          "brand": { "@id": canonicalUrl + "#organization" },
+          "category": "Transportation Management Software",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/PreOrder",
+            "url": canonicalUrl
+          }
+        },
+        {
+          "@type": "Product",
+          "@id": canonicalUrl + "#fuelcard",
+          "name": "Versys Fuel Card",
+          "description": "Fuel card for trucking carriers, brokers, dispatchers, and factoring companies. Up to $1.40 per gallon off at participating stations across the United States. Zero monthly fees.",
+          "brand": { "@id": canonicalUrl + "#organization" },
+          "category": "Fuel Card",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/PreOrder",
+            "url": canonicalUrl
+          }
+        }
+      ]
+    })} />
   </head>
   <body class="bg-brand-dark text-brand-ink antialiased">
     <ScrollContainer client:load>
