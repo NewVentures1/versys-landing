@@ -1,5 +1,4 @@
 ---
-import WaitlistForm from "../ui/WaitlistForm";
 import AnimatedCounter from "../ui/AnimatedCounter";
 ---
 
@@ -22,26 +21,13 @@ import AnimatedCounter from "../ui/AnimatedCounter";
   >
   </div>
 
-  <!-- Top-right savings counter (desktop only) — UP TO is the legal hedge -->
-  <div
-    class="absolute top-28 right-8 hidden xl:flex flex-col items-end gap-1 z-10"
-    data-hero-counter
-  >
-    <span class="text-[10px] text-brand-ink-faint uppercase tracking-[0.18em] font-semibold whitespace-nowrap">
-      Up to · per truck · yr 1
-    </span>
-    <span class="font-display text-3xl 2xl:text-4xl text-brand-green font-bold leading-none">
-      <AnimatedCounter client:load from={0} to={25850} duration={2} />
-    </span>
-  </div>
-
   <!-- Main content -->
   <div class="relative z-10 max-w-content mx-auto px-6 text-center">
     <h1
       class="text-4xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold tracking-tight leading-[1.0] mb-8 text-balance"
     >
       <span class="hero-rise hero-delay-1 inline-block">Free TMS.</span>{" "}
-      <span class="hero-rise hero-delay-2 text-brand-ink-soft inline-block">No card fees.</span>
+      <span class="hero-rise hero-delay-2 text-brand-ink-soft inline-block">No setup fees.</span>
       <br />
       <span class="hero-rise hero-delay-3 inline-block">Up to</span>{" "}
       <span class="hero-pop hero-delay-3 font-display gradient-text-green inline-block px-1">$1.40</span>{" "}
@@ -54,40 +40,31 @@ import AnimatedCounter from "../ui/AnimatedCounter";
       The first platform that pays you to use it. Free TMS for your fleet — plus thousands a year back on fuel.
     </p>
 
-    <div id="waitlist" class="flex justify-center mb-8">
-      <WaitlistForm client:load variant="hero" />
+    <!-- Savings counter centerpiece -->
+    <div class="flex flex-col items-center gap-2 mb-10">
+      <span class="text-[11px] sm:text-xs text-brand-ink-faint uppercase tracking-[0.2em] font-semibold">
+        Up to · per truck · yr 1
+      </span>
+      <span class="font-display text-6xl md:text-7xl lg:text-8xl text-brand-green font-bold leading-none">
+        <AnimatedCounter client:load from={0} to={25850} duration={2} />
+      </span>
+      <span class="text-sm md:text-base text-brand-ink-soft mt-1">
+        back in your pocket
+      </span>
     </div>
 
-    <div
-      class="inline-flex items-center gap-3 bg-white/[0.04] border border-white/10 rounded-full px-4 py-2 text-xs sm:text-sm text-brand-ink-soft"
-    >
-      <span class="relative flex h-2 w-2">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-green opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-green"></span>
-      </span>
-      <span>
-        <span class="text-brand-ink font-medium">Coming June 2026</span>
-        <span class="mx-1">·</span>
-        No fees · No setup · No commitment
-      </span>
+    <!-- Primary CTA -->
+    <div class="flex justify-center">
+      <a
+        href="#calculator"
+        class="inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green/90 text-white font-semibold px-8 py-4 rounded-full text-base md:text-lg shadow-lg shadow-brand-green/20 transition-all hover:shadow-xl hover:scale-[1.02]"
+      >
+        See my savings
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </a>
     </div>
   </div>
 
-  <!-- Scroll cue at bottom of hero -->
-  <a
-    href="#calculator"
-    class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-xs text-brand-ink-faint hover:text-brand-ink-soft transition group"
-    aria-label="See your savings"
-  >
-    <span class="uppercase tracking-wider">See your savings</span>
-    <svg
-      class="w-4 h-4 animate-bounce"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-    </svg>
-  </a>
 </section>

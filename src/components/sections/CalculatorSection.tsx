@@ -178,27 +178,6 @@ export default function CalculatorSection() {
               is most carriers&apos; real-world average across all fills.
             </p>
 
-            {/* CTA */}
-            <a
-              href="#waitlist"
-              className="inline-flex items-center gap-2 bg-brand-green hover:bg-brand-green/90 text-brand-dark font-semibold px-6 py-3.5 rounded-full transition-all duration-200 shadow-[0_8px_24px_-8px_rgba(22,176,90,0.5)] hover:shadow-[0_12px_32px_-8px_rgba(22,176,90,0.7)] hover:-translate-y-0.5 group/cta"
-            >
-              <span>Get your fleet&apos;s number — join waitlist</span>
-              <svg
-                className="w-4 h-4 transition-transform duration-200 group-hover/cta:translate-x-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2.5}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </a>
           </div>
         </div>
       </div>
