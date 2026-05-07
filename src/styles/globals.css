@@ -55,6 +55,14 @@
   z-index: 0;
 }
 
+/* Mobile GPUs choke on giant blur(120px) layers — drop the orbs entirely
+   on phones. They're decorative; the page reads fine without them. */
+@media (max-width: 767px) {
+  .gradient-orb {
+    display: none;
+  }
+}
+
 /* Custom range-slider styling — shared by every slider on the page.
    Drive the fill percentage by setting the CSS var --fill-pct inline. */
 .range-slider {
@@ -176,6 +184,18 @@
 .hero-delay-3 { animation-delay: 0.55s; }
 .hero-delay-4 { animation-delay: 0.75s; }
 @media (prefers-reduced-motion: reduce) {
+  .hero-rise,
+  .hero-pop {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* On mobile, skip the staggered hero entrance — first paint is already on
+   the critical path, and waiting up to 0.75s before the headline appears
+   makes the page feel broken on slow connections. Show it immediately. */
+@media (max-width: 767px) {
   .hero-rise,
   .hero-pop {
     opacity: 1;
