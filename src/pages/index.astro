@@ -3,13 +3,15 @@ import Layout from "../components/Layout.astro";
 import HeroSection from "../components/sections/HeroSection.astro";
 import CalculatorSection from "../components/sections/CalculatorSection";
 import FuelProgramSection from "../components/sections/FuelProgramSection.astro";
+import TmsSection from "../components/sections/TmsSection.astro";
 ---
 
 <Layout
-  title="Free TMS for Trucking + Fuel Card Up to $1.40/gal Off | Versys"
-  description="Run your fleet on free TMS software. Save up to $1.40/gallon at our fuel network. No fees, no per-user pricing. Built by truckers, for truckers."
+  title="Free TMS + Fuel Card Up to $1.40/gal Off | Versys"
+  description="Run your trucking fleet on free TMS software. Save up to $1.40/gallon at our fuel card network. No fees. No per-user pricing. Built by truckers, for truckers."
 >
   <HeroSection />
   <CalculatorSection client:load />
   <FuelProgramSection />
+  <TmsSection />
 </Layout>

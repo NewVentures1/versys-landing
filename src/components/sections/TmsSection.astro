@@ -1,0 +1,160 @@
+---
+const blocks = [
+  {
+    id: "tms-dashboard",
+    eyebrow: "01",
+    label: "Dashboard",
+    heading: "Your business, on one screen.",
+    body: "Freight in motion. Money owed. Drivers compliant. The moment you log in, you know where the business stands.",
+    image: "dashboard",
+    alt: "Versys TMS dashboard showing 15 active loads, 12 customers, $47,981 total receivables outstanding, and 9 invoices over 45 days past due. Compliance status all green.",
+    imageOnRight: true,
+  },
+  {
+    id: "tms-loads",
+    eyebrow: "02",
+    label: "Active freight",
+    heading: "Track every load, end to end.",
+    body: "Pickup, delivery, driver, broker, rate, status — sortable, searchable, color-coded. Built so dispatchers stop hunting for the right row.",
+    image: "loads",
+    alt: "Versys TMS Active Freight load board with rows for loads to brokers Pinnacle Freight Exchange, Apex Logistics, Coastal Capital Logistics, and others. Status pills for OPEN, DISPATCHED, and IN TRANSIT visible alongside lane and driver columns.",
+    imageOnRight: false,
+  },
+  {
+    id: "tms-aging",
+    eyebrow: "03",
+    label: "AR aging",
+    heading: "Know exactly who owes you.",
+    body: "Aging buckets, broker-by-broker totals, days past due — every dollar accounted for. Stop running receivables out of a spreadsheet.",
+    image: "aging",
+    alt: "Versys TMS AR Aging report showing $47,981 total outstanding bucketed across current, 1–30, 31–60, 61–90, and 90+ days past due, with per-broker line items and search.",
+    imageOnRight: true,
+  },
+  {
+    id: "tms-settlements",
+    eyebrow: "04",
+    label: "Driver settlements",
+    heading: "Pay drivers clean.",
+    body: "Fuel, advances, tolls, lumpers — every cost on every load adds up automatically. Close it out in one click. No spreadsheet, no math errors.",
+    image: "settlements",
+    alt: "Versys TMS Settlements page showing 33 open loads with a $20,729 total expense rollup. Per-load expenses ranging $158–$716 across drivers Kenneth Kim, Bradley Henderson, Francisco Martinez, and others.",
+    imageOnRight: false,
+  },
+  {
+    id: "tms-customers",
+    eyebrow: "05",
+    label: "Brokers + credit",
+    heading: "Brokers, with guardrails.",
+    body: "Set a credit limit per broker. Watch exposure climb load by load. Flag anyone on-hold or no-go and the system stops you from dispatching the next load. The bad ones never get a second chance.",
+    image: "customers",
+    alt: "Versys TMS Customers list with 12 broker accounts including Apex Logistics, Vanguard Transport Brokerage, and Pinnacle Freight Exchange. MC numbers, billing email, accounting phone, payment terms, and credit limits visible per row.",
+    imageOnRight: true,
+  },
+];
+---
+
+<section
+  id="tms"
+  aria-labelledby="tms-title"
+  class="relative bg-brand-dark py-24 md:py-32 overflow-hidden"
+>
+  <!-- Soft green orb in the background, decorative only -->
+  <div aria-hidden="true" class="absolute inset-x-0 top-0 h-[60vh] pointer-events-none">
+    <div class="gradient-orb bg-brand-green/8 w-[700px] h-[700px] -top-32 right-[-10rem]"></div>
+  </div>
+
+  <div class="relative z-[1] max-w-content mx-auto px-6">
+    <!-- Section heading -->
+    <div class="text-center max-w-3xl mx-auto mb-20 md:mb-28 reveal-up">
+      <p class="text-xs uppercase tracking-[0.18em] text-brand-green font-semibold mb-4">
+        Free with every fuel card account
+      </p>
+      <h2
+        id="tms-title"
+        class="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] mb-5 text-balance"
+      >
+        The full TMS, no upcharge.
+      </h2>
+      <p class="text-base md:text-lg text-brand-ink-soft leading-relaxed text-balance">
+        Everything you need to run your fleet — load entry, receivables, driver records, broker credit — built in. No per-user fees. No premium tier. No upsell.
+      </p>
+    </div>
+
+    <!-- Feature blocks -->
+    <div class="space-y-24 md:space-y-32">
+      {blocks.map((b) => (
+        <article
+          id={b.id}
+          class="grid md:grid-cols-2 gap-10 md:gap-16 items-center reveal-up"
+        >
+          <div class={b.imageOnRight ? "md:order-1" : "md:order-2"}>
+            <div class="inline-flex items-center gap-2 mb-5">
+              <span class="font-display text-2xl font-bold gradient-text-green leading-none">
+                {b.eyebrow}
+              </span>
+              <span class="text-xs uppercase tracking-[0.18em] text-brand-ink-faint font-semibold">
+                {b.label}
+              </span>
+            </div>
+            <h3 class="text-2xl md:text-4xl font-bold tracking-tight leading-[1.1] mb-5 text-balance">
+              {b.heading}
+            </h3>
+            <p class="text-base md:text-lg text-brand-ink-soft leading-relaxed max-w-md">
+              {b.body}
+            </p>
+          </div>
+
+          <div class={b.imageOnRight ? "md:order-2" : "md:order-1"}>
+            <picture class="block rounded-xl overflow-hidden ring-1 ring-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6),0_0_60px_-30px_rgba(22,176,90,0.3)] bg-brand-dark-2">
+              <source media="(max-width: 767px)" srcset={`/screens/${b.image}-mobile.webp`} />
+              <img
+                src={`/screens/${b.image}-desktop.webp`}
+                alt={b.alt}
+                width="1440"
+                height="900"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-auto block"
+              />
+            </picture>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Closing punch -->
+    <div class="max-w-2xl mx-auto text-center mt-24 md:mt-32 reveal-up">
+      <p class="text-2xl md:text-4xl font-bold text-brand-ink leading-tight tracking-tight mb-6 text-balance">
+        Most TMS companies charge you.
+        <span class="block">Ours is free — and puts money back in your pocket.</span>
+      </p>
+      <p class="font-display text-3xl md:text-5xl gradient-text-green leading-[1.2] pb-1">
+        Versys.
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const reveal = (root: ParentNode = document) => {
+    const els = root.querySelectorAll<HTMLElement>(".reveal-up:not(.revealed)");
+    if (!("IntersectionObserver" in window)) {
+      els.forEach((el) => el.classList.add("revealed"));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
+    );
+    els.forEach((el) => io.observe(el));
+  };
+  reveal();
+  document.addEventListener("astro:page-load", () => reveal());
+</script>
