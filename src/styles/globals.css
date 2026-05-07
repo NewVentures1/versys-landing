@@ -134,6 +134,56 @@
   animation: savings-pulse 360ms ease-out;
 }
 
+/* Hero entrance — each line slides up + fades in on page load. The $1.40
+   gets a tiny scale-pop on arrival so the eye lands on it. Honors
+   prefers-reduced-motion. */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes hero-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.hero-rise {
+  opacity: 0;
+  animation: hero-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.hero-pop {
+  opacity: 0;
+  animation: hero-pop 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform-origin: center;
+  display: inline-block;
+}
+.hero-delay-1 { animation-delay: 0.1s; }
+.hero-delay-2 { animation-delay: 0.35s; }
+.hero-delay-3 { animation-delay: 0.55s; }
+.hero-delay-4 { animation-delay: 0.75s; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise,
+  .hero-pop {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
 /* Scroll-tied entrance — start hidden + offset, snap into place on .revealed. */
 .reveal-up {
   opacity: 0;
