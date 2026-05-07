@@ -1,0 +1,137 @@
+---
+const faqs = [
+  {
+    q: "Is the TMS really free?",
+    a: `<p>Yes. The full TMS is free — load management, AR aging, driver settlements, broker management. No setup fees. No per-user pricing. No premium tier behind a paywall.</p>`,
+  },
+  {
+    q: "How many trucks and users can I add?",
+    a: `<p>Unlimited. Run a 1-truck operation or a 100-truck fleet — add every truck, every driver, every dispatcher, every accountant.</p>`,
+  },
+  {
+    q: "What features come with the free TMS?",
+    a: `<p>The full operating system for a trucking company:</p>
+<ul>
+<li><strong>Loads</strong> — book, dispatch, track status, attach rate confs and BOLs</li>
+<li><strong>AR aging</strong> — see who owes you and how late</li>
+<li><strong>Driver settlements</strong> with automatic expense rollup (fuel, advances, tolls, lumpers)</li>
+<li><strong>Broker accounts</strong> with credit limits and payment terms</li>
+<li><strong>Real-time broker credit checks</strong> — included at no extra cost (powered by Brokercredit.com)</li>
+<li><strong>Customer, driver, and equipment management</strong></li>
+<li><strong>Invoice + rate confirmation generation</strong> — branded with your own logo</li>
+<li><strong>One-click PDF conversion</strong> — drop in a JPG or photo of a BOL, get a clean PDF</li>
+<li><strong>Role-based access</strong> — admin, dispatcher, receivables, payables</li>
+<li><strong>Built-in safeguards</strong> — loads with driver advances on them can&apos;t be accidentally deleted</li>
+<li><strong>Audit trail</strong> — every important action is logged</li>
+</ul>
+<p>We&apos;re constantly adding new features. No &quot;premium&quot; tier — what we build, you get.</p>`,
+  },
+  {
+    q: "Can brokers, dispatchers, or factoring companies use it?",
+    a: `<p>The TMS itself is built for carriers. Fuel card discounts apply to anyone whose drivers swipe the card — carriers, brokers, dispatchers, and factoring companies all qualify.</p>`,
+  },
+  {
+    q: "Where can I use the fuel card?",
+    a: `<p>Anywhere EFS-network fuel cards are accepted — thousands of locations nationwide, including most major truck stops. The discount goes deepest at our partner network, with new partners added every month.</p>`,
+  },
+  {
+    q: "Does the fuel card have any monthly fees?",
+    a: `<p>No monthly fees. No setup fees. No per-card fees.</p>`,
+  },
+  {
+    q: "Is there a mobile app for drivers?",
+    a: `<p>The TMS works in any phone browser — no install required. A dedicated driver app for the fuel side is in the works: find the cheapest fuel near you, track your savings, see your discount in real time.</p>`,
+  },
+  {
+    q: "When can I start using it?",
+    a: `<p>Versys is opening to carriers in stages throughout 2026. Email <a href="mailto:support@versysinc.com" class="text-brand-green hover:underline">support@versysinc.com</a> and we&apos;ll let you know when your spot is ready.</p>`,
+  },
+];
+
+// Strip HTML tags + collapse whitespace for the schema.org plain-text answer.
+const stripHtml = (html: string) =>
+  html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: stripHtml(f.a),
+    },
+  })),
+};
+---
+
+<section
+  id="faq"
+  aria-labelledby="faq-title"
+  class="relative bg-brand-dark py-24 md:py-32"
+>
+  <div class="max-w-3xl mx-auto px-6">
+    <!-- Section heading -->
+    <div class="text-center mb-16 md:mb-20 reveal-up">
+      <p class="text-xs uppercase tracking-[0.18em] text-brand-green font-semibold mb-4">
+        FAQ
+      </p>
+      <h2
+        id="faq-title"
+        class="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] text-balance"
+      >
+        Questions, answered.
+      </h2>
+    </div>
+
+    <!-- Accordion list -->
+    <div class="divide-y divide-white/10 border-y border-white/10 reveal-up">
+      {faqs.map((faq) => (
+        <details class="group">
+          <summary class="flex items-center justify-between gap-6 py-6 cursor-pointer list-none [&::-webkit-details-marker]:hidden hover:text-brand-green transition">
+            <span class="text-base md:text-lg font-semibold text-brand-ink">
+              {faq.q}
+            </span>
+            <span class="flex-shrink-0 w-6 h-6 flex items-center justify-center text-brand-green transition-transform duration-200 group-open:rotate-45">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+              </svg>
+            </span>
+          </summary>
+          <div
+            class="pb-6 pr-10 text-base text-brand-ink-soft leading-relaxed [&>p]:mb-3 [&>p:last-child]:mb-0 [&>ul]:my-3 [&>ul]:space-y-2 [&>ul]:list-disc [&>ul]:pl-5 [&_strong]:text-brand-ink [&_strong]:font-semibold"
+            set:html={faq.a}
+          />
+        </details>
+      ))}
+    </div>
+  </div>
+
+  <!-- Schema.org FAQPage so Google can show this in search results -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} is:inline />
+</section>
+
+<script>
+  const reveal = (root: ParentNode = document) => {
+    const els = root.querySelectorAll<HTMLElement>(".reveal-up:not(.revealed)");
+    if (!("IntersectionObserver" in window)) {
+      els.forEach((el) => el.classList.add("revealed"));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
+    );
+    els.forEach((el) => io.observe(el));
+  };
+  reveal();
+  document.addEventListener("astro:page-load", () => reveal());
+</script>
