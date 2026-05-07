@@ -1,0 +1,235 @@
+---
+import FuelCardMockup from "../ui/FuelCardMockup";
+import DiscountStackChart from "../ui/DiscountStackChart";
+import IftaFormVisual from "../ui/IftaFormVisual";
+
+const cards = [
+  {
+    id: "card-one",
+    eyebrowNum: "01",
+    eyebrowLabel: "One card",
+  },
+  {
+    id: "card-savings",
+    eyebrowNum: "02",
+    eyebrowLabel: "The savings",
+  },
+  {
+    id: "ifta",
+    eyebrowNum: "03",
+    eyebrowLabel: "Compliance, automated",
+  },
+];
+---
+
+<section
+  id="fuel"
+  aria-labelledby="fuel-title"
+  class="relative"
+>
+  <!--
+    Orb is wrapped in its OWN overflow-hidden box so the section itself stays
+    overflow:visible. If overflow-hidden is on the section, it becomes the
+    containing block for sticky, and sticky won't engage (the section itself
+    doesn't scroll). Bug found via computed-style probe — sticky cards were
+    all in normal flow.
+  -->
+  <div aria-hidden="true" class="absolute inset-x-0 top-0 h-[80vh] pointer-events-none overflow-hidden">
+    <div class="gradient-orb bg-brand-green/8 w-[600px] h-[600px] -top-40 -left-40"></div>
+  </div>
+
+  <!-- Heading block (above the sticky stack) -->
+  <div class="relative z-[5] max-w-content mx-auto px-6 pt-24 md:pt-32 pb-16 md:pb-24">
+    <div class="text-center max-w-3xl mx-auto reveal-up">
+      <p
+        class="text-xs uppercase tracking-[0.18em] text-brand-green font-semibold mb-4"
+      >
+        How the fuel program works
+      </p>
+      <h2
+        id="fuel-title"
+        class="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.05] mb-5 text-balance"
+      >
+        Drive. Swipe. Save. Done.
+      </h2>
+      <p
+        class="text-base md:text-lg text-brand-ink-soft leading-relaxed text-balance"
+      >
+        Swipe at the pump. Save at the bank. Skip the shoebox.
+      </p>
+    </div>
+  </div>
+
+  <!--
+    Sticky-stack region.
+    All 3 cards are direct children of the same parent — the parent's natural
+    height is the sum of card heights, which gives each card a sticky range
+    equal to the next card's height. As you scroll, each subsequent card pins
+    at top, with a higher z-index, layering on top of the previous one — the
+    "page on top of page" effect.
+    md:top-20 (80px) clears the fixed nav. Mobile drops sticky entirely.
+    Each card has bg-brand-dark so the layering reads as opaque pages.
+  -->
+  <div class="relative" data-fuel-stack>
+    <!-- 01 — One card, broad acceptance -->
+    <article
+      class="relative md:sticky md:top-20 md:h-[calc(100vh-5rem)] md:flex md:items-center bg-brand-dark md:z-[1] py-16 md:py-0"
+    >
+      <div
+        class="max-w-content mx-auto px-6 grid md:grid-cols-2 gap-12 lg:gap-20 items-center w-full"
+      >
+        <div class="md:order-1">
+          <div class="inline-flex items-center gap-2 mb-5">
+            <span
+              class="font-display text-2xl font-bold gradient-text-green leading-none"
+            >
+              {cards[0].eyebrowNum}
+            </span>
+            <span
+              class="text-xs uppercase tracking-[0.18em] text-brand-ink-faint font-semibold"
+            >
+              {cards[0].eyebrowLabel}
+            </span>
+          </div>
+          <h3
+            class="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] mb-5 text-balance"
+          >
+            Your card works at thousands of stops.
+          </h3>
+          <p
+            class="text-base md:text-lg text-brand-ink-soft leading-relaxed max-w-md"
+          >
+            One card! Accepted nationwide at the truck stops drivers already
+            use.
+          </p>
+        </div>
+        <div class="md:order-2 flex justify-center">
+          <FuelCardMockup client:visible />
+        </div>
+      </div>
+    </article>
+
+    <!-- 02 — The savings -->
+    <article
+      class="relative md:sticky md:top-20 md:h-[calc(100vh-5rem)] md:flex md:items-center bg-brand-dark md:z-[2] py-16 md:py-0"
+    >
+      <div
+        class="max-w-content mx-auto px-6 grid md:grid-cols-2 gap-12 lg:gap-20 items-center w-full"
+      >
+        <div class="md:order-2">
+          <div class="inline-flex items-center gap-2 mb-5">
+            <span
+              class="font-display text-2xl font-bold gradient-text-green leading-none"
+            >
+              {cards[1].eyebrowNum}
+            </span>
+            <span
+              class="text-xs uppercase tracking-[0.18em] text-brand-ink-faint font-semibold"
+            >
+              {cards[1].eyebrowLabel}
+            </span>
+          </div>
+          <h3
+            class="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] mb-5 text-balance"
+          >
+            Save up to{" "}
+            <span class="font-display gradient-text-green inline-block">$1.40</span> every gallon.
+          </h3>
+          <p class="text-base md:text-lg text-brand-ink font-semibold mb-4">
+            No monthly fees. No subscriptions. No Headache.
+          </p>
+          <p
+            class="text-base md:text-lg text-brand-ink-soft leading-relaxed max-w-md"
+          >
+            Roll into a partner stop and the discount goes deeper. New
+            partners every month.
+          </p>
+        </div>
+        <div class="md:order-1 flex justify-center">
+          <DiscountStackChart client:visible />
+        </div>
+      </div>
+    </article>
+
+    <!-- 03 — IFTA, automated -->
+    <article
+      id="ifta"
+      class="relative md:sticky md:top-20 md:h-[calc(100vh-5rem)] md:flex md:items-center bg-brand-dark md:z-[3] py-16 md:py-0"
+    >
+      <div
+        class="max-w-content mx-auto px-6 grid md:grid-cols-2 gap-12 lg:gap-20 items-center w-full"
+      >
+        <div class="md:order-1">
+          <div class="inline-flex items-center gap-2 mb-5">
+            <span
+              class="font-display text-2xl font-bold gradient-text-green leading-none"
+            >
+              {cards[2].eyebrowNum}
+            </span>
+            <span
+              class="text-xs uppercase tracking-[0.18em] text-brand-ink-faint font-semibold"
+            >
+              {cards[2].eyebrowLabel}
+            </span>
+          </div>
+          <h3
+            class="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.1] mb-5"
+          >
+            IFTA, automated.
+          </h3>
+          <p
+            class="text-base md:text-lg text-brand-ink-soft leading-relaxed max-w-md"
+          >
+            Every swipe automatically captures the compliance data you need —
+            state, gallons, fuel type, timestamp. No paper receipts. No
+            shoebox. No quarterly scramble. Export your IFTA-ready summary on
+            demand.
+          </p>
+        </div>
+        <div class="md:order-2 flex justify-center">
+          <IftaFormVisual client:visible />
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Audience expansion line -->
+  <div class="relative z-[5] max-w-content mx-auto px-6 pt-16 md:pt-24 pb-24 md:pb-32 bg-brand-dark">
+    <div class="max-w-2xl mx-auto text-center reveal-up">
+      <p
+        class="text-base md:text-lg text-brand-ink-soft leading-relaxed text-balance"
+      >
+        Built for carriers — but available to brokers, dispatchers, and
+        factoring companies.
+        <span class="text-brand-ink font-semibold block mt-2">
+          Whoever pays the pump — Versys pays you back.
+        </span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Scroll-tied entrance for the heading + audience line.
+  const reveal = (root: ParentNode = document) => {
+    const els = root.querySelectorAll<HTMLElement>(".reveal-up:not(.revealed)");
+    if (!("IntersectionObserver" in window)) {
+      els.forEach((el) => el.classList.add("revealed"));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("revealed");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
+    );
+    els.forEach((el) => io.observe(el));
+  };
+  reveal();
+  document.addEventListener("astro:page-load", () => reveal());
+</script>
