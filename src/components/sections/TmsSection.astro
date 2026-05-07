@@ -106,7 +106,12 @@ const blocks = [
 
           <div class={b.imageOnRight ? "md:order-2" : "md:order-1"}>
             <picture class="block rounded-xl overflow-hidden ring-1 ring-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6),0_0_60px_-30px_rgba(22,176,90,0.3)] bg-brand-dark-2">
-              <source media="(max-width: 767px)" srcset={`/screens/${b.image}-mobile.webp`} />
+              <source
+                media="(max-width: 767px)"
+                srcset={`/screens/${b.image}-mobile.webp`}
+                width="390"
+                height="844"
+              />
               <img
                 src={`/screens/${b.image}-desktop.webp`}
                 alt={b.alt}
