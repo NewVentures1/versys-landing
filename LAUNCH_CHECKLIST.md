@@ -42,3 +42,4 @@ The day Versys publicly launches (target May 2026), or the day the first paying 
 - [ ] Verify the email backend hasn't hit Resend's free-tier limits (3000/month) — if close, upgrade or rate-limit
 - [ ] Verify domain (versysinc.com) is live with SSL, no mixed-content warnings
 - [ ] Verify all schema.org JSON-LD validates via Google's Rich Results Test
+- [ ] Delete old preview deployments on Vercel (Project → Deployments) so partners and search engines only see the production URL
