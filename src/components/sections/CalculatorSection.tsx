@@ -137,12 +137,17 @@ export default function CalculatorSection() {
             </div>
             <div
               key={pulseKey}
-              className="font-display gradient-text-green leading-none mb-6 savings-pulse text-[clamp(3.5rem,9vw,6.5rem)] font-bold"
-              data-savings-display
-              aria-live="polite"
-              aria-atomic="true"
+              className="font-display leading-none mb-6 savings-pulse text-[clamp(3.5rem,9vw,6.5rem)] font-bold"
             >
-              {fmtMoney(displayed)}
+              <span
+                className="gradient-text-green"
+                data-savings-display
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                {fmtMoney(displayed)}
+              </span>
+              <sup className="text-[0.35em] text-brand-green/70 font-medium align-super ml-1">1</sup>
             </div>
 
             {/* Sub-stats */}
