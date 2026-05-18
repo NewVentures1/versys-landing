@@ -6,7 +6,7 @@ test.describe("Hero section", () => {
     const h1 = page.getByRole("heading", { level: 1 });
     await expect(h1).toContainText(/Free TMS/);
     await expect(h1).toContainText(/\$1\.40/);
-    await expect(page.getByText(/The first platform that pays you to use it/)).toBeVisible();
+    await expect(page.getByText(/The platform that pays you back for using it/)).toBeVisible();
     await expect(page.getByPlaceholder("you@yourtrucking.com")).toBeVisible();
     await expect(page.getByRole("button", { name: /Join the waitlist/ })).toBeVisible();
     await expect(page.getByText(/Coming May 2026/)).toBeVisible();
