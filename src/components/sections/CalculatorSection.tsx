@@ -147,7 +147,7 @@ export default function CalculatorSection() {
               >
                 {fmtMoney(displayed)}
               </span>
-              <sup className="text-[0.35em] text-brand-green/70 font-medium align-super ml-1">1</sup>
+              <sup className="text-[0.22em] text-brand-green/70 font-medium align-super ml-1">1</sup>
             </div>
 
             {/* Sub-stats */}
