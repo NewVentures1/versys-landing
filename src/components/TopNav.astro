@@ -1,5 +1,7 @@
 ---
 // Sticky top nav. Transparent at top of page; blurred + dark on scroll past 100px.
+// Desktop (md+): inline TMS / Fuel Card / FAQ links.
+// Mobile (<md): hamburger button toggles a small dropdown panel.
 ---
 
 <nav
@@ -16,6 +18,8 @@
         class="h-10 md:h-12 lg:h-14 w-auto opacity-95 group-hover:opacity-100 transition"
       />
     </a>
+
+    <!-- Desktop nav -->
     <ul class="hidden md:flex items-center gap-8 text-sm font-medium">
       <li>
         <a href="#tms" class="text-brand-ink-soft hover:text-brand-ink transition">TMS</a>
@@ -27,10 +31,79 @@
         <a href="#faq" class="text-brand-ink-soft hover:text-brand-ink transition">FAQ</a>
       </li>
     </ul>
+
+    <!-- Mobile hamburger button -->
+    <button
+      type="button"
+      class="md:hidden text-brand-ink-soft hover:text-brand-ink transition p-2 -mr-2"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-menu-toggle
+    >
+      <svg data-icon-open width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+      <svg data-icon-close class="hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+        <line x1="6" y1="18" x2="18" y2="6"></line>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile dropdown panel — hidden on desktop + hidden until toggle. -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden bg-brand-dark/95 backdrop-blur-md border-b border-white/5"
+    data-menu-panel
+  >
+    <ul class="max-w-content mx-auto px-6 py-3 space-y-1 text-base font-medium">
+      <li>
+        <a href="#tms" class="block text-brand-ink-soft hover:text-brand-ink transition py-2">TMS</a>
+      </li>
+      <li>
+        <a href="#fuel" class="block text-brand-ink-soft hover:text-brand-ink transition py-2">Fuel Card</a>
+      </li>
+      <li>
+        <a href="#faq" class="block text-brand-ink-soft hover:text-brand-ink transition py-2">FAQ</a>
+      </li>
+    </ul>
   </div>
 </nav>
 
 <script>
+  // Hamburger toggle (mobile only — button is md:hidden).
+  const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const panel = document.querySelector<HTMLElement>("[data-menu-panel]");
+  if (toggle && panel) {
+    const iconOpen = toggle.querySelector<SVGElement>("[data-icon-open]");
+    const iconClose = toggle.querySelector<SVGElement>("[data-icon-close]");
+    const close = () => {
+      panel.classList.add("hidden");
+      toggle.setAttribute("aria-expanded", "false");
+      iconOpen?.classList.remove("hidden");
+      iconClose?.classList.add("hidden");
+    };
+    const open = () => {
+      panel.classList.remove("hidden");
+      toggle.setAttribute("aria-expanded", "true");
+      iconOpen?.classList.add("hidden");
+      iconClose?.classList.remove("hidden");
+    };
+    toggle.addEventListener("click", () => {
+      toggle.getAttribute("aria-expanded") === "true" ? close() : open();
+    });
+    // Close after tapping a link so the panel doesn't linger after section jump.
+    panel.querySelectorAll("a").forEach((a) => a.addEventListener("click", close));
+    // Escape closes the panel.
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
+    });
+  }
+
+  // Scroll-based nav bar blur (unchanged from previous version).
   const nav = document.querySelector("[data-nav]");
   if (nav) {
     const onScroll = () => {
