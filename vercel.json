@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/f/:code*",
+      "destination": "https://app.versysinc.com/f/:code*",
+      "permanent": false
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
