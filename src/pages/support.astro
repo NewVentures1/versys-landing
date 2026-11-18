@@ -1,0 +1,83 @@
+---
+// The Support page — Apple and Google both need a web address where people can reach us (the carrier phone app's
+// store step, plan Task 7.2; Armen 11-18 "ok"). The one address people write to is the site's own
+// support@versysinc.com (the footer's Contact link and the FAQ use it too).
+import Layout from "../components/Layout.astro";
+
+const SUPPORT_EMAIL = "support@versysinc.com";
+
+const topics = [
+  {
+    title: "Can't sign in",
+    body: `Use <strong>Forgot password?</strong> on the sign-in screen — in the Versys phone app or at app.versysinc.com — to set a new password. If we email you a 6-digit code to sign in and it doesn't arrive within a few minutes, check your spam folder.`,
+  },
+  {
+    title: "Lost or stolen fuel card",
+    body: `Email us right away with the card's last 4 digits.`,
+  },
+  {
+    title: "Deposits, balances and card money",
+    body: `Email us the date, the amount and your <strong>deposit code</strong> (it's on the Deposit Funds page), and we'll look into it.`,
+  },
+  {
+    title: "Closing your account",
+    body: `The account owner can cancel any time: sign in at app.versysinc.com, open <strong>Settings → Company</strong> and use <strong>Cancel Account</strong>.`,
+  },
+];
+---
+
+<Layout
+  title="Support | Versys"
+  description="Get help with Versys — the TMS, the fuel card and the Versys phone app. Email support@versysinc.com."
+  canonicalPath="/support"
+>
+  <section aria-labelledby="support-title" class="relative bg-brand-dark pt-32 pb-16 md:pt-40 md:pb-24">
+    <div class="max-w-3xl mx-auto px-6">
+      <p class="text-xs uppercase tracking-[0.18em] text-brand-green font-semibold mb-4">Versys</p>
+      <h1
+        id="support-title"
+        class="text-4xl md:text-6xl font-bold tracking-tight leading-[1.05] text-balance mb-6"
+      >
+        Support
+      </h1>
+      <p class="text-base md:text-lg text-brand-ink-soft leading-relaxed mb-10">
+        Help with the Versys website, the fuel card and the Versys phone app.
+      </p>
+
+      <div class="rounded-2xl border border-white/10 bg-brand-dark-2 p-6 md:p-8 mb-12">
+        <h2 class="text-lg md:text-xl font-semibold text-brand-ink mb-3">Email us</h2>
+        <p class="text-base text-brand-ink-soft leading-relaxed mb-4">
+          <a
+            href={`mailto:${SUPPORT_EMAIL}`}
+            class="text-brand-green font-semibold break-all hover:underline"
+          >{SUPPORT_EMAIL}</a>
+        </p>
+        <p class="text-sm text-brand-ink-soft leading-relaxed">
+          Tell us your company name and the email you sign in with. Never send a password, a full card number or a
+          PIN — we will never ask for them.
+        </p>
+      </div>
+
+      <div class="divide-y divide-white/10 border-y border-white/10">
+        {topics.map((topic) => (
+          <div class="py-6">
+            <h2 class="text-base md:text-lg font-semibold text-brand-ink mb-2">{topic.title}</h2>
+            <p
+              class="text-base text-brand-ink-soft leading-relaxed [&_strong]:text-brand-ink [&_strong]:font-semibold"
+              set:html={topic.body}
+            />
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 flex flex-wrap gap-x-6 gap-y-3 text-sm">
+        <a href="https://app.versysinc.com/privacy" class="text-brand-ink-muted hover:text-brand-ink transition">
+          Privacy Policy
+        </a>
+        <a href="https://app.versysinc.com/terms" class="text-brand-ink-muted hover:text-brand-ink transition">
+          Terms of Service
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
